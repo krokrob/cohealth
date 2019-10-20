@@ -4,12 +4,12 @@ class BodaccScraper
   DEFAULT_TIME_SCOPE = 7.days
   BASE_URI = 'https://www.bodacc.fr'
 
-  def announcements(keyword)
+  def announcements(keyword, options = {})
     url = "#{BASE_URI}/annonce/liste"
     response = RestClient.post(
       url, {
         motscles: keyword,
-        # categorieannonce: 'creation',
+        categorieannonce: 'creation',
         typeannonce: 'tout',
         datepublicationmin: Time.zone.today - DEFAULT_TIME_SCOPE,
         publication: 'A'
@@ -29,7 +29,7 @@ class BodaccScraper
       doc = Nokogiri::HTML(html)
       annonces = page_scraper(doc, annonces)
     end
-    annonces
+    annonces.map { |annonce| Announcement.new(annonce) }
   end
 
   private
