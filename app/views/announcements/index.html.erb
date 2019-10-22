@@ -1,0 +1,45 @@
+<div class="container pt-4 pb-2">
+  <%= form_tag announcements_path, method: :get do %>
+    <%= text_field_tag :keyword, '', class: "form-control" %>
+    <%= submit_tag 'Chercher', class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div class="px-4">
+  <% if @announcements&.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <% @headers.each do |header| %>
+            <th scope="col"><%= header %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @announcements.each_with_index do |announcement, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= announcement.categorie %></td>
+            <td><%= announcement.bodacc %></td>
+            <td><%= announcement.annonce_n %></td>
+            <td><%= announcement.siren %></td>
+            <td><%= announcement.rcs %></td>
+            <td><%= announcement.denomination %></td>
+            <td><%= announcement.forme %></td>
+            <td><%= announcement.capital %></td>
+            <td><%= announcement.administration %></td>
+            <td><%= announcement.adresse %></td>
+            <td><%= announcement.etablissement_s[:qualite_de_l_etablissement] %></td>
+            <td><%= announcement.etablissement_s[:origine_du_fond] %></td>
+            <td><%= announcement.etablissement_s[:activite] %></td>
+            <td><%= announcement.etablissement_s[:adresse_de_l_etablissement] %></td>
+            <td><%= announcement.a_dater_du %></td>
+            <td><%= announcement.date_de_commencement_d_activite %></td>
+            <td><%= announcement.infogreffe %></td>
+            <td><%= announcement.naf %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
