@@ -3,7 +3,7 @@ class AnnouncementsController < ApplicationController
   def index
     if params[:keyword]
       @keyword = params[:keyword]
-      @headers = ['Catégorie', 'Bodacc', 'Annonce n°', 'Siren', 'RCS',
+      @headers = ['Catégorie', 'Bodacc', 'Annonce n°', 'Siren', 'RCS', 'Nom', 'Prénom',
         'Dénomination', 'Forme juridique', 'Capital', 'Administration',
         'Adresse', 'Qualité', 'Origine du fond', 'Activité', 'Adresse établissement',
         'Début Activité', 'Date de création', 'URL infogreffe', 'NAF']
