@@ -1,8 +1,11 @@
 <div class="container pt-4 pb-2">
-  <%= form_tag announcements_path, method: :get, class: "form-inline" do %>
-    <%= text_field_tag :keyword, '', class: "form-control" %>
-    <%= submit_tag 'Chercher', class: "btn btn-primary" %>
-  <% end %>
+  <div class="d-flex justify-content-between">
+    <h1>Créations et liquidations</h1>
+    <%= form_tag announcements_path, method: :get, class: "form-inline" do %>
+      <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "Entrez un mot-clé" %>
+      <%= submit_tag 'Chercher', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
 <div class="px-4 scrollable-x w-100">
   <% if @announcements&.any? %>
@@ -35,10 +38,14 @@
             <td><%= announcement.etablissement_s[:origine_du_fond] %></td>
             <td><%= announcement.etablissement_s[:activite] %></td>
             <td><%= announcement.etablissement_s[:adresse_de_l_etablissement] %></td>
+            <td><%= announcement.etablissement_s[:adresse_du_siege_social] %></td>
             <td><%= announcement.a_dater_du %></td>
             <td><%= announcement.date_de_commencement_d_activite %></td>
             <td><%= announcement.infogreffe %></td>
             <td><%= announcement.naf %></td>
+            <td><%#= announcement.precedent_siren %></td>
+            <td><%#= announcement.precedent_admin %></td>
+            <td><%= announcement.complement_jugement %></td>
           </tr>
         <% end %>
       </tbody>
