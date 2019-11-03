@@ -10,10 +10,14 @@ class Announcement
   end
 
   def siren
-    @attributes[:n_rcs].gsub(' ','').match(/\d+/)[0]
+    @attributes[:n_rcs].delete(' ').match(/\d+/)[0]
   end
 
   def rcs
-    @attributes[:n_rcs].match(/ RCS (\w+)/)[1]
+    @attributes[:n_rcs].match(/ RCS (.+)/)[1]
+  end
+
+  def previous_siren
+    @attributes[:precedent_s_proprietaire_s][:n_identification].delete(' ').match(/\d+/)[0]
   end
 end

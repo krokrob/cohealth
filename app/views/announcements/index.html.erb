@@ -34,17 +34,30 @@
             <td><%= announcement.capital %></td>
             <td><%= announcement.administration %></td>
             <td><%= announcement.adresse %></td>
-            <td><%= announcement.etablissement_s[:qualite_de_l_etablissement] %></td>
-            <td><%= announcement.etablissement_s[:origine_du_fond] %></td>
-            <td><%= announcement.etablissement_s[:activite] %></td>
-            <td><%= announcement.etablissement_s[:adresse_de_l_etablissement] %></td>
-            <td><%= announcement.etablissement_s[:adresse_du_siege_social] %></td>
+            <% if announcement.etablissement_s %>
+              <td><%= announcement.etablissement_s[:qualite_de_l_etablissement] %></td>
+              <td><%= announcement.etablissement_s[:origine_du_fond] %></td>
+              <td><%= announcement.etablissement_s[:activite] %></td>
+              <td><%= announcement.etablissement_s[:adresse_de_l_etablissement] %></td>
+              <td><%= announcement.etablissement_s[:adresse_du_siege_social] %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+              <td><%= announcement.activite %></td>
+              <td></td>
+              <td><%= announcement.adresse_du_siege_social %></td>
+            <% end %>
             <td><%= announcement.a_dater_du %></td>
             <td><%= announcement.date_de_commencement_d_activite %></td>
             <td><%= announcement.infogreffe %></td>
             <td><%= announcement.naf %></td>
-            <td><%#= announcement.precedent_siren %></td>
-            <td><%#= announcement.precedent_admin %></td>
+            <% if announcement.precedent_s_proprietaire_s %>
+              <td><%= announcement.previous_siren %></td>
+              <td><%= announcement.precedent_s_proprietaire_s[:nom] %> <%= announcement.precedent_s_proprietaire_s[:prenom] %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
             <td><%= announcement.complement_jugement %></td>
           </tr>
         <% end %>

@@ -11,7 +11,7 @@ class BodaccScraper
       response = RestClient.post(
         url, {
           motscles: keyword,
-          categorieannonce: 'creation',
+          # categorieannonce: 'creation',
           typeannonce: 'tout',
           datepublicationmin: Time.zone.today - DEFAULT_TIME_SCOPE,
           publication: 'A'
@@ -60,7 +60,7 @@ class BodaccScraper
       names << title.text.delete(':').strip
     end
     values = []
-    doc.search('#annonce>dl>dd').each do |description|
+    doc.search('#annonce>dl>dt+dd').each do |description|
       the_description = {}
       description.search('dl').each do |sub|
         sub_titles = []
@@ -76,7 +76,7 @@ class BodaccScraper
         end
       end
       if the_description.empty?
-        values << description.text.strip.gsub(/[\n|\t| ]+/, ' ') unless description.text =~ /Dépôt de l'état des créances/
+        values << description.text.strip.gsub(/[\n|\t| ]+/, ' ')
       else
         values << the_description
       end

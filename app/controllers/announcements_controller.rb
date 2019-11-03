@@ -10,7 +10,8 @@ class AnnouncementsController < ApplicationController
       'Dénomination', 'Forme juridique', 'Capital', 'Administration',
       'Adresse', 'Qualité', 'Origine du fond', 'Activité', 'Adresse établissement',
       'Adresse du siège social', 'Début Activité', 'Date de création',
-      'URL infogreffe', 'NAF', 'Siren précédent', 'Admin précédent'
+      'URL infogreffe', 'NAF', 'Siren précédent', 'Admin précédent',
+      'Complément du jugement'
     ]
     @announcements = BodaccScraper.new.announcements(@keyword)
   end
